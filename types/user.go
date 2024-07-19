@@ -6,7 +6,8 @@ type UserStore interface {
 	GetUserByEmail(email string) (*User, error)
 	GetUserByID(id int) (*User, error)
 	CreateUser(user RegisterUserPayload) error
-  GetUserByName(firstName string, lastName string) (*User, error)
+	GetUserByName(firstName string, lastName string) (*User, error)
+	UpdateUserPoints(user UpdateUserPointsPayload) error
 }
 
 type User struct {
@@ -37,7 +38,13 @@ type LoginUserPayload struct {
 	Password string `json:"password"`
 }
 
+type UpdateUserPointsPayload struct {
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Points    int    `json:"points"`
+}
+
 type FindUserPayload struct {
-	FirstName  string    `json:"firstName"`
-	LastName   string    `json:"lastName"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
 }

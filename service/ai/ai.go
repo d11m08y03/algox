@@ -34,7 +34,7 @@ func (h *Handler) handleGetBloodDemand(w http.ResponseWriter, r *http.Request) {
 		return
   }
 
-  url := ""
+  url := "/ai/getBloodDemand"
   response, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))
   if err != nil {
 		utils.WriteError(w, http.StatusInternalServerError, err)

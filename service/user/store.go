@@ -50,6 +50,7 @@ func scanRowIntoUser(rows *sql.Rows) (*types.User, error) {
 		&user.IsHospital,
 		&user.CreatedAt,
 		&user.BloodType,
+		&user.Points,
 	)
 	if err != nil {
 		return nil, err
@@ -104,6 +105,31 @@ func (s *Store) GetUserByID(id int) (*types.User, error) {
 	}
 
 	return u, nil
+}
+
+func (s *Store) UpdateUserPoints(user types.UpdateUserPointsPayload) error {
+	statement, err := s.db.Prepare(`
+    UPDATE users
+    SET points=?
+    WHERE firstName=? AND lastName=?
+  `)
+	if err != nil {
+		return err
+	}
+	defer statement.Close()
+
+	_, err = statement.Exec(
+    user.Points,
+		user.FirstName,
+		user.LastName,
+	)
+	if err != nil {
+    log.Println("Error updating points:" + err.Error())
+		return err
+	}
+
+	log.Println("User points updated successfully")
+	return nil
 }
 
 func (s *Store) CreateUser(user types.RegisterUserPayload) error {
