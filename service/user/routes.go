@@ -36,7 +36,7 @@ func (h *Handler) handleLogin(w http.ResponseWriter, r *http.Request) {
 		return
   }
 
-  if u.Password != payload.Password {
+  if !auth.ComparePassword(u.Password, []byte(payload.Password)){
 		utils.WriteError(w, http.StatusBadRequest, fmt.Errorf("wrong email or password"))
 		return
   }
@@ -57,6 +57,14 @@ func (h *Handler) handleRegister(w http.ResponseWriter, r *http.Request) {
 		utils.WriteError(w, http.StatusBadRequest, err)
 		return
 	}
+
+  hashed, err := auth.HashPassword(payload.Password)
+  if err != nil {
+		utils.WriteError(w, http.StatusBadRequest, err)
+		return
+  }
+
+  payload.Password = hashed
 
   h.store.CreateUser(payload)
 	utils.WriteJSON(w, http.StatusCreated, "User Created")
