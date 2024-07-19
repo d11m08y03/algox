@@ -1,13 +1,14 @@
 package types
 
 type BloodDemandRequestPayload struct {
-	Temperature float32 `json:"temperature"`
-	BloodType   string  `json:"bloodType"`
-	Age         int     `json:"age"`
-	Gender      string  `json:"gender"`
-	Population  int     `json:"population"`
-	Events      int     `json:"events"`
-	Date        string  `json:"date"`
+	DistrictName               string `json:"District_Name"`
+	Date                       string `json:"Date"`
+	Population                 int    `json:"Population"`
+	NumberOfHospitals          int    `json:"Number_Of_Hospitals"`
+	NumberOfAccidents          int    `json:"Number_Of_Accidents"`
+	NumberOfSurgeriesPerformed int    `json:"Number_Of_Surgeries_Performed"`
+	BloodDriveEvents           int    `json:"Blood_Drive_Events"`
+	Seasonality                string `json:"Seasonality"`
 }
 
 type BloodDemandResultPayload struct {

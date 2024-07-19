@@ -21,6 +21,7 @@ func NewHandler(store types.UserStore) *Handler {
 func (h *Handler) RegisterRoutes(router *mux.Router) {
 	router.HandleFunc("/api/login", h.handleLogin).Methods("POST")
 	router.HandleFunc("/api/register", h.handleRegister).Methods("POST")
+  router.HandleFunc("/api/getUserByName", h.handlerGetUserByName).Methods("GET")
 }
 
 func (h *Handler) handleLogin(w http.ResponseWriter, r *http.Request) {
@@ -72,4 +73,21 @@ func (h *Handler) handleRegister(w http.ResponseWriter, r *http.Request) {
   }
 
 	utils.WriteJSON(w, http.StatusCreated, "User Created")
+}
+
+func (h *Handler) handlerGetUserByName(w http.ResponseWriter, r *http.Request) {
+	var payload types.FindUserPayload
+
+	if err := utils.ParseJSON(r, &payload); err != nil {
+		utils.WriteError(w, http.StatusBadRequest, err)
+		return
+	}
+
+  user, err := h.store.GetUserByName(payload.FirstName, payload.LastName)
+  if err != nil {
+		utils.WriteError(w, http.StatusBadRequest, err)
+    return
+  }
+
+  utils.WriteJSON(w, http.StatusOK, user)
 }

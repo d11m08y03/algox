@@ -58,6 +58,30 @@ func scanRowIntoUser(rows *sql.Rows) (*types.User, error) {
 	return user, nil
 }
 
+func (s *Store) GetUserByName(firstName string, lastName string) (*types.User, error) {
+	query := `SELECT * FROM users WHERE firstName=? AND lastName=?`
+
+	rows, err := s.db.Query(query, firstName, lastName)
+	if err != nil {
+		return nil, err
+	}
+
+	u := new(types.User)
+	for rows.Next() {
+		u, err = scanRowIntoUser(rows)
+		if err != nil {
+			log.Println(err.Error())
+			return nil, err
+		}
+	}
+
+	if u.ID == 0 {
+		return nil, fmt.Errorf("user not found")
+	}
+
+	return u, nil
+}
+
 func (s *Store) GetUserByID(id int) (*types.User, error) {
 	query := `SELECT * FROM users WHERE id=?`
 
