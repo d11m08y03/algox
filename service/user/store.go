@@ -102,7 +102,7 @@ func (s *Store) CreateUser(user types.RegisterUserPayload) error {
 		user.BloodType,
 	)
 	if err != nil {
-		log.Println("Error creating new user")
+    log.Println("Error creating new user:" + err.Error())
 		return err
 	}
 

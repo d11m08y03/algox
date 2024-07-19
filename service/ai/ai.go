@@ -17,7 +17,7 @@ func NewHandler() *Handler {
 }
 
 func (h *Handler) RegisterRoutes(router *mux.Router) {
-	router.HandleFunc("/getBloodDemand", h.handleGetBloodDemand).Methods("POST")
+	router.HandleFunc("/api/getBloodDemand", h.handleGetBloodDemand).Methods("POST")
 }
 
 func (h *Handler) handleGetBloodDemand(w http.ResponseWriter, r *http.Request) {
