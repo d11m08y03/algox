@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blood Demand Prediction</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: "Arial", sans-serif;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #c0392b;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    h2 {
+      color: #e74c3c;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+
+    .form-label {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    .form-control {
+      border: 1px solid #e74c3c;
+      border-radius: 5px;
+    }
+
+    .btn-primary {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #c0392b;
+      border-color: #96281b;
+    }
+
+    .icon {
+      color: #e74c3c;
+      margin-right: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>
+      <i class="fas fa-heartbeat icon"></i>Blood Demand and Stock Prediction
+    </h1>
+    <form method="post" action="/predict">
+      <div class="form-group">
+        <label for="date" class="form-label">Date:</label>
+        <input type="date" id="date" name="date" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="blood_type" class="form-label">Blood Type:</label>
+        <select id="blood_type" name="blood_type" class="form-control" required>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="hospital" class="form-label">Hospital:</label>
+        <select id="hospital" name="hospital" class="form-control" required>
+          <option value="Wellkin Hospital">Wellkin Hospital</option>
+          <option value="Jawaharlal Nehru Hospital">
+            Jawaharlal Nehru Hospital
+          </option>
+          <option value="Fortis Clinique Darné">Fortis Clinique Darné</option>
+          <option value="Long Mountain Hospital">
+            Long Mountain Hospital
+          </option>
+          <option value="North Hospital">North Hospital</option>
+          <option value="SSRN Hospital">SSRN Hospital</option>
+          <option value="Flacq Hospital">Flacq Hospital</option>
+          <option value="Apollo Bramwell Hospital">
+            Apollo Bramwell Hospital
+          </option>
+          <option value="Candos Hospital">Candos Hospital</option>
+          <option value="MedPoint Hospital">MedPoint Hospital</option>
+          <option value="ENT Hospital">ENT Hospital</option>
+          <option value="Mahebourg Hospital">Mahebourg Hospital</option>
+          <option value="City Clinic">City Clinic</option>
+          <option value="Dr. A.G. Jeetoo Hospital">
+            Dr. A.G. Jeetoo Hospital
+          </option>
+          <option value="Victoria Hospital">Victoria Hospital</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Predict</button>
+    </form>
+
+    {% if predicted_demand is not none and predicted_stock is not none %}
+    <h2><i class="fas fa-chart-line icon"></i>Prediction Results:</h2>
+    <p>
+      <i class="fas fa-tint icon"></i>Predicted Blood Demand: {{
+      predicted_demand }} units
+    </p>
+    <p>
+      <i class="fas fa-warehouse icon"></i>Predicted Stock Level: {{
+      predicted_stock }} units
+    </p>
+    {% endif %}
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+
+</html>

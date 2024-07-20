@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donor Results</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Donor Matches</h1>
+      {% for donor in donors %}
+      <div class="mt-3">
+        <h4>Donor ID: {{ donor['Donor ID'] }}</h4>
+        <p>Blood Type: {{ donor['Blood Type'] }}</p>
+        <p>
+          Location: {{ donor['Location Name'] }} (Zone: {{ donor['Location'] }})
+        </p>
+        <p>Phone Number: {{ donor['Phone Number'] }}</p>
+        <p>Availability: {{ donor['Availability'] }}</p>
+      </div>
+      {% endfor %}
+      <a href="/" class="btn btn-primary mt-3">Search Again</a>
+    </div>
+  </body>
+</html>

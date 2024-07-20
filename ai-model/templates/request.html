@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipient Input Form</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Enter Recipient Details</h1>
+      <form method="POST">
+        <div class="form-group">
+          <label for="blood_type">Blood Type:</label>
+          <select class="form-control" name="blood_type" required>
+            <option value="">Select Blood Type</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <select class="form-control" name="location" required>
+            <option value="">Select Location</option>
+            <option value="Port Louis">Port Louis</option>
+            <option value="Curepipe">Curepipe</option>
+            <option value="Flic en Flac">Flic en Flac</option>
+            <option value="Vacoas">Vacoas</option>
+            <option value="Goodlands">Goodlands</option>
+            <option value="Rose Hill">Rose Hill</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="urgency">Urgency:</label>
+          <select class="form-control" name="urgency" required>
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Find Donor</button>
+      </form>
+    </div>
+  </body>
+</html>
