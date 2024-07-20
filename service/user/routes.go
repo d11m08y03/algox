@@ -42,6 +42,7 @@ func (h *Handler) handleUpdateUserPoints(w http.ResponseWriter, r *http.Request)
 }
 
 func (h *Handler) handleLogin(w http.ResponseWriter, r *http.Request) {
+  log.Println("Login hit")
 	var payload types.LoginUserPayload
 	if err := utils.ParseJSON(r, &payload); err != nil {
 		utils.WriteError(w, http.StatusBadRequest, err)
@@ -71,6 +72,7 @@ func (h *Handler) handleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) handleRegister(w http.ResponseWriter, r *http.Request) {
+  log.Println("Register user HIT")
 	var payload types.RegisterUserPayload
 	if err := utils.ParseJSON(r, &payload); err != nil {
 		utils.WriteError(w, http.StatusBadRequest, err)

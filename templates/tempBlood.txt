@@ -1,0 +1,11 @@
+    {% if predicted_demand is not none and predicted_stock is not none %}
+    <h2><i class="fas fa-chart-line icon"></i>Prediction Results:</h2>
+    <p>
+      <i class="fas fa-tint icon"></i>Predicted Blood Demand: {{
+      predicted_demand }} units
+    </p>
+    <p>
+      <i class="fas fa-warehouse icon"></i>Predicted Stock Level: {{
+      predicted_stock }} units
+    </p>
+    {% endif %}

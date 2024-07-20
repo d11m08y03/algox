@@ -3,6 +3,7 @@ package ai
 import (
 	"bytes"
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/d11m08y03/algox/types"
@@ -34,7 +35,9 @@ func (h *Handler) handleGetBloodDemand(w http.ResponseWriter, r *http.Request) {
 		return
   }
 
-  url := "/ai/getBloodDemand"
+  log.Println("AI")
+
+  url := "http://127.0.0.1:5000/predict"
   response, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))
   if err != nil {
 		utils.WriteError(w, http.StatusInternalServerError, err)

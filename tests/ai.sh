@@ -1,3 +1,3 @@
-curl -X POST http://localhost:8080/predict \
+curl -X POST http://localhost:5000/predict \
    -H "Content-Type: application/json" \
-   -d '{"email": "emacom", "password": "1234"}'
+   -d '{"date": "2024-07-12", "bloodType": "A-", "hospital": "Wellkin Hospital"}'

@@ -1,8 +1,8 @@
 package types
 
 type BloodDemandRequestPayload struct {
-	Date      string `json:"Date"`
-	BloodType string `json:"bloodType"`
+	Date      string `json:"date"`
+	BloodType string `json:"blood_type"`
 	Hospital  string `json:"hospital"`
 }
 
